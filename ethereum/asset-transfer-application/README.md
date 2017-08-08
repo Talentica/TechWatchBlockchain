@@ -41,6 +41,8 @@ geth --datadir ~/.ethereum/privatenet init privategensis.json
 ```
 >Go To : https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options to understand command line parameters 
 
+![alt text](https://drive.google.com/uc?export=view&id=0B5nrsdlXdWORWVd4SDMwcEdjS1k)
+
 ### Create ‘coinbase’ account
 - Attach ‘eth console’ to already running blockchain using below command
 ```
