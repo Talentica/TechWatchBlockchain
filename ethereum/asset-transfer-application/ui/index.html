@@ -8,8 +8,45 @@
 <body class="container">
   <h1>Simple Asset Transfer Application</h1>
   </br>
-  <input type="text" id="address" />
-  <a href="#" onclick="getBalance()" class="btn btn-primary">Get Balance</a>
+  
+  <h3> Transfer Asset</h3>
+
+<form class="form-inline">
+  <div class="form-group">
+    
+    <input  class="form-control" id="from-address" placeholder="From Address">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="password" id="from-address-password" placeholder="Password">
+  </div>
+ 
+  <div class="form-group">
+    <input  class="form-control" id="to-address" placeholder="To Address">
+  </div>
+  
+  
+  <div class="form-group">
+    <input  class="form-control" id="quantity" placeholder="Quantity">
+  </div>
+  
+  <button onclick="transfer()"  class="btn btn-default">Transfer</button>
+</form>
+
+  
+  <h3> Get Balance</h3>
+ 
+  <div class="form-inline">
+  <div class="form-group">
+     <input type="text" id="address" class="form-control"  style="width:100%;"  placeholder="address"/>
+  </div>
+  <button onclick="getBalance()"  class="btn btn-default">Fetch</button>
+  
+</div>
+
+
+
+  
+  
 </body>
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
