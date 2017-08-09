@@ -33,7 +33,7 @@ GOROOT=/usr/lib/go-1.8
 ###	Create private chain
 - Initialize the chain using below command :
 ```
-geth --datadir ~/.ethereum/privatenet init privategensis.json
+> geth --datadir ~/.ethereum/privatenet init privategensis.json
 ```
 - Start ethereum blockchain 
 ```
@@ -92,3 +92,27 @@ Basically you need two things to deploy your contract ‘ABI’ and ‘Bytecode�
 I have used ***2nd*** option to compile and deploy smart contract on ethereum blockchain. Execute following command to compile and deploy the contract
 
 
+```sh
+> cd compile-deploy/
+> node compile.js 
+```
+Wait for sometime (make sure your miner is running), Once deployed you will get the address where contract has deployed
+
+```sh
+Contract address: 0x8fdd53c912f2948fc238df5182ba25953ee3b263
+```
+Now make necessary changes to 'contract.js' in UI folder so that UI get to know about the location of contract.
+
+```sh
+> cd ui
+> vi contract.js
+//address where contract has deployed
+var address = "enter_contract_address_here"
+```
+
+Now open the html with any browser to interact with application. Or If you are using 'docker-compose.yml' run :
+```sh
+> node server.js
+```
+Go to http://localhost:3000/ to interact with application.
+You can transfer asset to any address (you may need to create the address first) and can also check the balance of an asset.
