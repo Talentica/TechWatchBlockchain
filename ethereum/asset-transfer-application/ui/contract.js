@@ -6,7 +6,8 @@ var abi = abi = JSON.parse('[{"constant":true,"inputs":[{"name":"","type":"addre
 var contract = web3.eth.contract(abi);
 
 
-var address = "0x8fdd53c912f2948fc238df5182ba25953ee3b263"
+//address where contract has deployed
+var address = "enter_contract_address_here"
 
 
 const token = contract.at(address);
