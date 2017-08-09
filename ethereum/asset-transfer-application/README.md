@@ -5,6 +5,10 @@ This is 'Hello World' application to interact with ethereum blockchain. This app
   - How to create simple smart contract. This smart contract is very simple : transfer asset from one account to another.
   - How to compile and deploy the contract using various option available.
   - How to interact with blockchain from client side javascript using web3 and rpc  .
+  
+The final application looks as follows :
+
+![alt text](https://drive.google.com/uc?export=view&id=0B5nrsdlXdWORaFktUFEyTkhwY1U)
 
 # Steps to install and run Ethereum blockchain
 ### Install geth
