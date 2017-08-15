@@ -1,0 +1,22 @@
+version: '2'
+services:
+  node1:
+    ports:
+     - "3000:3000"
+     - "80:80"
+    volumes:
+     - .:/usr/app/src
+    environment:
+     - NAME=node1
+    image: "hemant24/cloud9:bitcoin"
+    
+    
+  node2:
+    ports:
+     - "3001:3000"
+     - "81:80"
+    volumes:
+     - .:/usr/app/src
+    environment:
+     - NAME=node2
+    image: "hemant24/cloud9:bitcoin"
