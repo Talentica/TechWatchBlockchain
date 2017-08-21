@@ -2,11 +2,11 @@
 
 This is 'Hello World' application to interact with bitcoin. Bitcoin can be run in following three modes :
 
-   - mainnet : This mode is like production mode. It interact with main blockchain, so need real bitcoin to make your application work.
+   - **mainnet** : This mode is like production mode. It interact with main blockchain, so need real bitcoin to make your application work.
     
-   - testnet : This mode is like test mode. Similar to 'main blockchain' there is also test blockchain 'testnet3' which behaves similar to mainnet but here bitcoin does not have any values. You can get bitcoin without any cost on 'testnet3'. Just search for 'bitcoin faucet' on google you will see many website where you can get free bitcoin (dummy one NOT real)
+   - **testnet** : This mode is like test mode. Similar to 'main blockchain' there is also test blockchain 'testnet3' which behaves similar to mainnet but here bitcoin does not have any values. You can get bitcoin without any cost on 'testnet3'. Just search for 'bitcoin faucet' on google you will see many website where you can get free bitcoin (dummy one NOT real)
     
-   - regtest : This mode is like developer mode. We can control the creation of bitcoins/or blocks. It is best suited when you are creating your application. We will be using this mode in our application.
+   - **regtest** : This mode is like developer mode. We can control the creation of bitcoins/or blocks. It is best suited when you are creating your application. We will be using this mode in our application.
     
     
     
@@ -47,7 +47,7 @@ The final application looks as follows :
 
 ```
 
-- Open another terminal and check if are able to connect with 'bitcoind' using 'bitcoin-cli' (bitcoin-cli is also included in docker image)
+- Open another terminal and check if you are able to connect with 'bitcoind' using 'bitcoin-cli' (bitcoin-cli is also included in docker image)
 
 ```
 > bitcoin-cli getinfo
