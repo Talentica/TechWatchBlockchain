@@ -93,3 +93,73 @@ Above command is basically generating new 101 blocks. Below is the reason fetche
 > bitcoin-cli getbalance
 50.00000000
 ```
+
+
+### Run web application
+
+- Once you sufficient balance start web application on both node. First go to "http://localhost" and run following command to start the server :
+```
+> cd app
+> node server.js 
+```
+- Visit "http://localhost:3000" and click on "fetch" button you should get '50' as balance.
+
+- Similarly, start web application on other node by visiting "http://localhost:81" and run same command as mentioned in obove command.
+- Visit "http://localhost:3001" and click on "fetch" button you should get '0' as balance.
+
+> Please note that the balance you are seeing is of 'wallet' not for a particular address and that's the very reason for address field to be disabled.
+## Transfer bitcoin from one wallet to another
+
+### Connect to node
+
+- Open node1 terminal and issue following command to see how many other nodes are connected to this node
+```
+> bitcoin-cli  getaddednodeinfo 
+[
+]
+```
+- Empty list shows that node is not connected any other node.
+- While node2's bitcoind is still running connect both node with each other by issuing following command
+```
+> bitcoin-cli  addnode  node1 add
+> bitcoin-cli  getaddednodeinfo 
+[
+  {
+    "addednode": "node1",
+    "connected": true,
+    "addresses": [
+      {
+        "address": "172.19.0.3:18444",
+        "connected": "outbound"
+      }
+    ]
+  }
+]
+```
+- Similarly run above command on other node 
+```
+> bitcoin-cli  addnode  node2 add
+> bitcoin-cli  getaddednodeinfo 
+[
+  {
+    "addednode": "node2",
+    "connected": true,
+    "addresses": [
+      {
+        "address": "172.19.0.2:18444",
+        "connected": "outbound"
+      }
+    ]
+  }
+]
+```
+
+### Transfer bitcoin
+- Go to node2 terminal and generate new address for node2's wallet by issuing following command :
+```
+> bitcoin-cli getnewaddress
+mhPsA32V8QKrakQGsvJiQohz18fHpYFmUR
+```
+- Copy newly generated address and visit to node1's web application 'http://localhost:3000' and enter quantity and address in provided fields.
+- Once transferred, you can check the balance on node2 wallet by clicking on 'fetch' button.
+
