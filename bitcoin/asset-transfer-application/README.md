@@ -104,10 +104,10 @@ Above command is basically generating new 101 blocks. Below is the reason fetche
 ```
 - Visit "http://localhost:3000" and click on "fetch" button you should get '50' as balance.
 
-- Similarly, start web application on other node by visiting "http://localhost:81" and run same command as mentioned in obove command.
+- Similarly, start web application on other node by visiting "http://localhost:81" and run same command as mentioned in above command.
 - Visit "http://localhost:3001" and click on "fetch" button you should get '0' as balance.
 
-> Please note that the balance you are seeing is of 'wallet' not for a particular address and that's the very reason for address field to be disabled.
+> Please note that the balance you are seeing is of 'wallet' not for a particular address and that's the very reason for address field is disabled.
 ## Transfer bitcoin from one wallet to another
 
 ### Connect to node
@@ -118,7 +118,7 @@ Above command is basically generating new 101 blocks. Below is the reason fetche
 [
 ]
 ```
-- Empty list shows that node is not connected any other node.
+- Empty list shows that node is not connected to any other node.
 - While node2's bitcoind is still running connect both node with each other by issuing following command
 ```
 > bitcoin-cli  addnode  node1 add
