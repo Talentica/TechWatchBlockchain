@@ -97,7 +97,7 @@ Above command is basically generating new 101 blocks. Below is the reason fetche
 
 ### Run web application
 
-- Once you sufficient balance start web application on both node. First go to "http://localhost" and run following command to start the server :
+- Once you have sufficient balance, start web application on both node. First go to "http://localhost" and run following command to start the server :
 ```
 > cd app
 > node server.js 
