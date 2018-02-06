@@ -8,6 +8,7 @@
 - [Monax](https://monax.io/)
 - [Hydrachain](https://github.com/HydraChain/hydrachain)
 - [Openchain](https://www.openchain.org/)
+- [Hyperledger Sawtooth](https://www.hyperledger.org/projects/sawtooth)
 
 
 ## Attributes for Evaluation
