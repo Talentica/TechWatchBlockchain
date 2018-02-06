@@ -1,0 +1,8 @@
+openchain:
+  build: openchain/.
+  ports:
+    - "8080:8080"
+  container_name: openchain-server
+  volumes:
+    - ./data:/openchain/data
+  restart: always
