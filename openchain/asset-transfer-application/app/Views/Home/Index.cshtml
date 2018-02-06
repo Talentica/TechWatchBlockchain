@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    ViewData["Title"] = "OpenChain";
+}
+
+<h2>Simple Asset Transfer Application</h2>
+
+<h3>Transfer Asset</h3>
+
+@section Scripts{
+    @*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/lib/angular/angular.min.js"></script>
+        <script src="~/lib/angular-route/angular-route.min.js"></script>*@
+    @*<script src="~/js/site.js"></script>*@
+}
+
+<div class="row" ng-app="openchain">
+    <div class="col-md-12">
+        <div ng-view></div>
+        <!--a ng-href="#/dashboard" class="btn btn-md btn-success">Dashboard</!--a>
+        <a asp-controller="Account" asp-action="LogOff" class="btn btn-md btn-success">Sign Out</a-->
+
+    </div>
+
+
+</div>
+

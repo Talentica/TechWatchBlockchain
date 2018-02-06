@@ -1,0 +1,17 @@
+﻿<div class="col-md-6 col-md-offset-2">
+    <div>
+
+        <div class="form-group">
+            <input type="text" placeholder="To Address (e.g. /asset/p2pkh/Xe6JT9UZj7bGfdBfGpru5MN4S29DDM4cLj/)" class="form-control" id="toAddress" name="toAddress" ng-model="vm.toAddress"  />
+            <input type="text" placeholder="Quantity" class="form-control" id="quantity" name="quantity" ng-model="vm.quantity" />
+            <button class="btn btn-sm btn-primary" ng-click="vm.transfer()">Transfer</button>
+        </div>
+
+        <h3>Get Balance</h3>
+        <div class="form-group">
+            <input type="text"  placeholder="address" class="form-control" id="balance" name="balance" ng-model="vm.balance" ng-disabled="true" />
+            <button class="btn btn-sm btn-primary" ng-click="vm.getBalance()" >Fetch</button>
+        </div>
+    </div>
+</div>
+
