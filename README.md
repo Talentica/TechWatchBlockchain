@@ -9,6 +9,7 @@
 - [Hydrachain](https://github.com/HydraChain/hydrachain)
 - [Openchain](https://www.openchain.org/)
 - [Hyperledger Sawtooth](https://www.hyperledger.org/projects/sawtooth)
+- [Enigma](https://www.enigma.co/)
 
 
 ## Attributes for Evaluation
