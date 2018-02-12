@@ -47,7 +47,7 @@ You should not see any error:
 - Openchain provides a sample wallet application to connect to an existing server (https://wallet.openchain.org or http://nossl.wallet.openchain.org/) The wallet is a client side application running in the browser, and capable of connecting to any Openchain endpoint. It can connect to multiple endpoints at the same time, and pull information and submit transactions to multiple instances of Openchain. More information of this client can be found at https://docs.openchain.org/en/latest/general/client.html#openchain-client
 - In order to use the client you need to provide the server address and a passphrase(this passphrase will be used to generate the private keys)
 - Logging in to the wallet using the passphrase will display the account address which can be used to transfer assets
-- In order to modify ledger info of the openchain server via the wallet client, update the *admin_addresses* field in data/config.json with the wallet address
+- In order to modify ledger info of the openchain server via the wallet client, update the *admin_addresses* field in data/config.json with the wallet address and restart the openchain server
 ```
 // Define transaction validation parameters
   "validator_mode": {
