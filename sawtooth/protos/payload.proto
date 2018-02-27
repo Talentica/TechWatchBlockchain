@@ -1,0 +1,58 @@
+// Copyright 2017 Intel Corporation
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ----------------------------------------------------------------------------
+
+syntax = "proto3";
+
+import "rule.proto";
+
+message TransactionPayload {
+
+    enum PayloadType {
+        TYPE_UNSET = 0;
+        CREATE_ACCOUNT = 2;
+        CREATE_ASSET = 3;
+        APPROVE_ASSET = 4;
+        CLOSE_ASSET = 5;
+    }
+
+    PayloadType payload_type = 1;
+
+    CreateAccount create_account = 2;
+    CreateAsset create_asset = 3;
+    ApproveAsset approve_asset = 4;
+    CloseAsset close_asset = 5;
+}
+
+message CreateAccount {
+    string name = 1;
+    string description = 2;
+    uint32 approver_level = 3;
+}
+
+message CreateAsset {
+    string name = 1;
+    string description = 2;
+    uint32 num_steps = 3;
+    repeated Rule rules = 4;
+}
+
+message ApproveAsset {
+    string id = 1;
+    string approval_step = 3;
+}
+
+message CloseAsset {
+    string id = 1;
+}
