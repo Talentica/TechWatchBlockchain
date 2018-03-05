@@ -92,41 +92,46 @@ class AssetHandler(TransactionHandler):
             print("Asset created successfully")
             
         elif payload.is_approve_asset():
+            approver = state.get_account(public_key=transaction.header.signer_public_key)
+            if not approver:
+                raise InvalidTransaction(
+                    "Unable to approve asset, signing key has no"
+                    " Account: {}".format(transaction.header.signer_public_key))
+
             approve_asset=payload.approve_asset()
-            asset=state.get_asset(approve_asset.id)
+            asset=state.get_asset(approve_asset.name)
             if not asset:
                 raise InvalidTransaction(
-                    "Failed to approve asset, the asset id {} "
+                    "Failed to approve asset, the asset {} "
                     "does not reference an Asset.".format(
-                    approve_asset.id))
-            if not asset.curr_step <= account.approver_level:
+                    approve_asset.name))
+            if not asset.curr_step <= approver.approver_level:
                 raise InvalidTransaction(
                     "Failed to approve asset, the Asset {} needs approver at level "
-                    "higher than {}".format(asset.name, account.approver_level))
+                    "higher than {}".format(asset.name, approver.approver_level))
 
             state.approve_asset(
-                id=newasset.name,
-                description=newasset.description,
-                num_steps=newasset.num_steps,
-                rules=newasset.rules)
+                name=newasset.name,
+                approver_level=approver.approver_level)
 
-            offer_acceptance.handle_accept_offer(
-                payload.accept_offer(),
-                header=transaction.header,
-                state=state)
+            #offer_acceptance.handle_accept_offer(
+            #    payload.accept_offer(),
+            #    header=transaction.header,
+            #    state=state)
         elif payload.is_close_asset():
-            offer = state.get_asset(close_asset.id)
+            close_asset=payload.close_asset()
+            asset = state.get_asset(close_asset.name)
             if not asset:
                 raise InvalidTransaction(
-                    "Failed to close asset, the asset id {} "
+                    "Failed to close asset, the asset {} "
                     "does not reference an Asset.".format(
-                    close_asset.id))
-            if not asset.curr_step == asset.num_steps:
+                    close_asset.name))
+            if asset.curr_step <= asset.num_steps:
                 raise InvalidTransaction(
                     "Failed to close asset, the Asset {} is at {} "
-                    "not open".format(asset.id, asset.curr_step))
+                    "not approved at all levels".format(asset.name, asset.curr_step))
 
-            state.close_asset(close_asset.id)
+            state.close_asset(close_asset.name)
             #offer_closure.handle_close_offer(
             #    payload.close_offer(),
             #    header=transaction.header,

@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='models/payload.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x14models/payload.proto\x1a\x11models/rule.proto\"\xc8\x02\n\x12TransactionPayload\x12\x35\n\x0cpayload_type\x18\x01 \x01(\x0e\x32\x1f.TransactionPayload.PayloadType\x12&\n\x0e\x63reate_account\x18\x02 \x01(\x0b\x32\x0e.CreateAccount\x12\"\n\x0c\x63reate_asset\x18\x03 \x01(\x0b\x32\x0c.CreateAsset\x12$\n\rapprove_asset\x18\x04 \x01(\x0b\x32\r.ApproveAsset\x12 \n\x0b\x63lose_asset\x18\x05 \x01(\x0b\x32\x0b.CloseAsset\"g\n\x0bPayloadType\x12\x0e\n\nTYPE_UNSET\x10\x00\x12\x12\n\x0e\x43REATE_ACCOUNT\x10\x02\x12\x10\n\x0c\x43REATE_ASSET\x10\x03\x12\x11\n\rAPPROVE_ASSET\x10\x04\x12\x0f\n\x0b\x43LOSE_ASSET\x10\x05\"J\n\rCreateAccount\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x16\n\x0e\x61pprover_level\x18\x03 \x01(\r\"Y\n\x0b\x43reateAsset\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x11\n\tnum_steps\x18\x03 \x01(\r\x12\x14\n\x05rules\x18\x04 \x03(\x0b\x32\x05.Rule\"?\n\x0c\x41pproveAsset\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x15\n\rapproval_step\x18\x03 \x01(\t\"\x18\n\nCloseAsset\x12\n\n\x02id\x18\x01 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\x14models/payload.proto\x1a\x11models/rule.proto\"\xc8\x02\n\x12TransactionPayload\x12\x35\n\x0cpayload_type\x18\x01 \x01(\x0e\x32\x1f.TransactionPayload.PayloadType\x12&\n\x0e\x63reate_account\x18\x02 \x01(\x0b\x32\x0e.CreateAccount\x12\"\n\x0c\x63reate_asset\x18\x03 \x01(\x0b\x32\x0c.CreateAsset\x12$\n\rapprove_asset\x18\x04 \x01(\x0b\x32\r.ApproveAsset\x12 \n\x0b\x63lose_asset\x18\x05 \x01(\x0b\x32\x0b.CloseAsset\"g\n\x0bPayloadType\x12\x0e\n\nTYPE_UNSET\x10\x00\x12\x12\n\x0e\x43REATE_ACCOUNT\x10\x02\x12\x10\n\x0c\x43REATE_ASSET\x10\x03\x12\x11\n\rAPPROVE_ASSET\x10\x04\x12\x0f\n\x0b\x43LOSE_ASSET\x10\x05\"J\n\rCreateAccount\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x16\n\x0e\x61pprover_level\x18\x03 \x01(\r\"Y\n\x0b\x43reateAsset\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x11\n\tnum_steps\x18\x03 \x01(\r\x12\x14\n\x05rules\x18\x04 \x03(\x0b\x32\x05.Rule\"3\n\x0c\x41pproveAsset\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x15\n\rapproval_step\x18\x03 \x01(\t\"\x1a\n\nCloseAsset\x12\x0c\n\x04name\x18\x01 \x01(\tb\x06proto3')
   ,
   dependencies=[models_dot_rule__pb2.DESCRIPTOR,])
 
@@ -226,21 +226,14 @@ _APPROVEASSET = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='ApproveAsset.id', index=0,
+      name='name', full_name='ApproveAsset.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='name', full_name='ApproveAsset.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='approval_step', full_name='ApproveAsset.approval_step', index=2,
+      name='approval_step', full_name='ApproveAsset.approval_step', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -259,7 +252,7 @@ _APPROVEASSET = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=541,
-  serialized_end=604,
+  serialized_end=592,
 )
 
 
@@ -271,7 +264,7 @@ _CLOSEASSET = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='CloseAsset.id', index=0,
+      name='name', full_name='CloseAsset.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -289,8 +282,8 @@ _CLOSEASSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=606,
-  serialized_end=630,
+  serialized_start=594,
+  serialized_end=620,
 )
 
 _TRANSACTIONPAYLOAD.fields_by_name['payload_type'].enum_type = _TRANSACTIONPAYLOAD_PAYLOADTYPE

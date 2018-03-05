@@ -49,10 +49,10 @@ message CreateAsset {
 }
 
 message ApproveAsset {
-    string id = 1;
+    string name = 1;
     string approval_step = 3;
 }
 
 message CloseAsset {
-    string id = 1;
+    string name = 1;
 }

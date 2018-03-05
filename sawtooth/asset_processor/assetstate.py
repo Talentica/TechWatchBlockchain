@@ -72,6 +72,27 @@ class AssetState(object):
             state_entries_send,
             self._timeout)
 
+    def approve_asset(self, name, approver_level):
+        address = addresshandler.make_asset_address(name)
+
+        container = _get_asset_container(self._state_entries, address)
+
+        try:
+            asset = _get_asset_from_container(container, name)
+        except KeyError:
+            #asset = container.entries.add()
+            print("Asset {} not found for approval".format(name))
+
+        if asset.curr_step <= approver_level AND asset.curr_step <= asset.num_steps
+            asset.curr_step = asset.curr_step+1
+
+        state_entries_send = {}
+        state_entries_send[address] = container.SerializeToString()
+        return self._context.set_state(
+            state_entries_send,
+            self._timeout)
+
+
     def close_asset(self, name):
         address = addresshandler.make_asset_address(name)
 
@@ -82,7 +103,6 @@ class AssetState(object):
         except KeyError:
             # We are fine with returning None for an asset that doesn't exist
             pass
-        
         
         return self._context.delete_state(
             [address],
