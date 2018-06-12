@@ -83,10 +83,9 @@ def create_account(name, description, appr_level):
 def create_asset(name, description, no_steps, rules):
     """Create a CreateAsset txn and wrap it in a batch and list.
     Args:
-        txn_key (sawtooth_signing.Signer): The txn signer key pair.
-        batch_key (sawtooth_signing.Signer): The batch signer key pair.
         name (str): The name of the asset.
         description (str): A description of the asset.
+        no_steps (int): number of approval steps for asset
         rules (list): List of protobuf.rule_pb2.Rule
     Returns:
         tuple: List of Batch, signature tuple
@@ -120,7 +119,77 @@ def create_asset(name, description, no_steps, rules):
         payload_type=payload_pb2.TransactionPayload.CREATE_ASSET,
         create_asset=asset)
 
-    batches, batch_id = make_header_and_batch(
+    return make_header_and_batch(
+        payload=payload,
+        inputs=inputs,
+        outputs=outputs,
+        txn_key=signer,
+        batch_key=batcher_signer)
+
+def approve_asset(name,
+                apprvl_step):
+    """Create an AcceptOffer txn and wrap it in a Batch and list.
+    Args:
+        name (str): The identifier of the Offer.
+        apprvl_step (int): The number of units of exchange.
+    Returns:
+        tuple: List of Batch, signature tuple
+    """
+    global context
+    global signer
+
+    batcher_private_key = Secp256k1PrivateKey.from_hex(BATCHER_PRIVATE_KEY)
+    batcher_signer = CryptoFactory(context).new_signer(batcher_private_key)
+
+    public_key = signer.get_public_key().as_hex()
+    
+    inputs = [addresshandler.make_asset_address(asset_id=name),
+              addresshandler.make_account_address(account_id=public_key)]
+
+    outputs = [addresshandler.make_asset_address(asset_id=name)]
+
+    approve_txn = payload_pb2.ApproveAsset(
+        name=name,
+        approval_step=apprvl_step)
+
+    payload = payload_pb2.TransactionPayload(
+        payload_type=payload_pb2.TransactionPayload.APPROVE_ASSET,
+        approve_asset=approve_txn)
+
+    return make_header_and_batch(
+        payload=payload,
+        inputs=inputs,
+        outputs=outputs,
+        txn_key=signer,
+        batch_key=batcher_signer)
+
+def close_asset(name):
+    """Create an CloseOffer txn and wrap it in a Batch and list.
+    Args:
+        name (str): The identifier of the Offer.
+    Returns:
+        tuple: List of Batch, signature tuple
+    """
+    global context
+    global signer
+
+    batcher_private_key = Secp256k1PrivateKey.from_hex(BATCHER_PRIVATE_KEY)
+    batcher_signer = CryptoFactory(context).new_signer(batcher_private_key)
+
+    public_key = signer.get_public_key().as_hex()
+
+    inputs = [addresshandler.make_asset_address(asset_id=name)]
+
+    outputs = [addresshandler.make_asset_address(asset_id=name)]
+
+    close_txn = payload_pb2.CloseAsset(
+        name=name)
+
+    payload = payload_pb2.TransactionPayload(
+        payload_type=payload_pb2.TransactionPayload.CLOSE_ASSET,
+        close_asset=close_txn)
+
+    return make_header_and_batch(
         payload=payload,
         inputs=inputs,
         outputs=outputs,

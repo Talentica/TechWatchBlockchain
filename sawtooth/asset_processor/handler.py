@@ -22,7 +22,8 @@ from sawtooth_sdk.processor.exceptions import InvalidTransaction
 from sawtooth_sdk.processor.handler import TransactionHandler
 
 import addresshandler
-
+from asset_processor.assetstate import AssetState
+from asset_processor.assetpayload import AssetPayload
 #from marketplace_processor.account import account_creation
 #from marketplace_processor.asset import asset_creation
 #from marketplace_processor.holding import holding_creation
@@ -111,13 +112,14 @@ class AssetHandler(TransactionHandler):
                     "higher than {}".format(asset.name, approver.approver_level))
 
             state.approve_asset(
-                name=newasset.name,
+                name=approve_asset.name,
                 approver_level=approver.approver_level)
 
             #offer_acceptance.handle_accept_offer(
             #    payload.accept_offer(),
             #    header=transaction.header,
             #    state=state)
+            print("Asset approved successfully")
         elif payload.is_close_asset():
             close_asset=payload.close_asset()
             asset = state.get_asset(close_asset.name)
@@ -136,6 +138,7 @@ class AssetHandler(TransactionHandler):
             #    payload.close_offer(),
             #    header=transaction.header,
             #    state=state)
+            print("Asset closed successfully")
 
         else:
             raise InvalidTransaction("Transaction payload type unknown.")

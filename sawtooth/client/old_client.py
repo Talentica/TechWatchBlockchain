@@ -83,7 +83,8 @@ from urllib.error import HTTPError
 
 try:
     request = urllib.request.Request(
-        'http://localhost:8008/batches',
+        #'http://localhost:8008/batches',
+        'http://localhost:8043/batches',
         batch_list_bytes,
         method='POST',
         headers={'Content-Type': 'application/octet-stream'})

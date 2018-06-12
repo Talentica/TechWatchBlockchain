@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Copyright 2017 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +13,16 @@
 # limitations under the License.
 # -----------------------------------------------------------------------------
 
-import os
-import sys
+FROM ubuntu:16.04
 
-sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-    'asset_processor'))
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8AA7AF1F1091A5FD && \
+    echo 'deb http://repo.sawtooth.me/ubuntu/1.0/stable xenial universe' >> /etc/apt/sources.list && \
+    apt-get update
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))) )
+RUN apt-get install -y -q python3-sawtooth-sdk
 
-#from marketplace_processor.main import main
-from asset_processor.assettracker import main
+WORKDIR /project/sawtooth
 
-    
-if __name__ == '__main__':
-    main()
+ENV PATH $PATH:/project/sawtooth/bin
+
+CMD ['assettracker-tp']

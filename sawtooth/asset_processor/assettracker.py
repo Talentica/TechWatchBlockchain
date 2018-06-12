@@ -77,13 +77,15 @@ def main(args=None):
         handler = AssetHandler()
 
         processor.add_handler(handler)
+        print("added the handler")
 
         processor.start()
+        print("Started the transaction processor!!")
     except KeyboardInterrupt:
         pass
     except Exception as e:  # pylint: disable=broad-except, invalid-name
-        #print("Error: {}".format(e), file=sys.stderr)
-        print >> sys.stderr, "Error: {}".format(e)
+        print("Error: {}".format(e), file=sys.stderr)
+        #print >> sys.stderr, "Error: {}".format(e)
     finally:
         if processor is not None:
             processor.stop()

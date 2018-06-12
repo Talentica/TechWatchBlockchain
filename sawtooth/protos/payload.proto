@@ -50,7 +50,7 @@ message CreateAsset {
 
 message ApproveAsset {
     string name = 1;
-    string approval_step = 3;
+    uint32 approval_step = 3;
 }
 
 message CloseAsset {

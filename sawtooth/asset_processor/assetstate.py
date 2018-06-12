@@ -18,9 +18,9 @@ import os
 
 sys.path.append(os.path.dirname(sys.path[0]))
 
-from protobuf import account_pb2
-from protobuf import asset_pb2
-from protobuf import rule_pb2
+from models import account_pb2
+from models import asset_pb2
+from models import rule_pb2
 
 import addresshandler
 
@@ -42,10 +42,10 @@ class AssetState(object):
             addresses=[address],
             timeout=self._timeout))
         
-        container = _get_asset_container(self._state_entries, address)
+        container = self._get_asset_container(self._state_entries, address)
         asset = None
         try:
-            asset = _get_asset_from_container(container, name)
+            asset = self._get_asset_from_container(container, name)
         except KeyError:
             # We are fine with returning None for an asset that doesn't exist
             pass
@@ -54,10 +54,10 @@ class AssetState(object):
     def set_asset(self, name, description, num_steps, rules):
         address = addresshandler.make_asset_address(name)
 
-        container = _get_asset_container(self._state_entries, address)
+        container = self._get_asset_container(self._state_entries, address)
 
         try:
-            asset = _get_asset_from_container(container, name)
+            asset = self._get_asset_from_container(container, name)
         except KeyError:
             asset = container.entries.add()
 
@@ -75,15 +75,15 @@ class AssetState(object):
     def approve_asset(self, name, approver_level):
         address = addresshandler.make_asset_address(name)
 
-        container = _get_asset_container(self._state_entries, address)
+        container = self._get_asset_container(self._state_entries, address)
 
         try:
-            asset = _get_asset_from_container(container, name)
+            asset = self._get_asset_from_container(container, name)
         except KeyError:
             #asset = container.entries.add()
             print("Asset {} not found for approval".format(name))
 
-        if asset.curr_step <= approver_level AND asset.curr_step <= asset.num_steps
+        if (asset.curr_step <= approver_level) and (asset.curr_step <= asset.num_steps):
             asset.curr_step = asset.curr_step+1
 
         state_entries_send = {}
@@ -92,14 +92,13 @@ class AssetState(object):
             state_entries_send,
             self._timeout)
 
-
     def close_asset(self, name):
         address = addresshandler.make_asset_address(name)
 
-        container = _get_asset_container(self._state_entries, address)
+        container = self._get_asset_container(self._state_entries, address)
         asset = None
         try:
-            asset = _delete_asset_from_container(container, name)
+            asset = self._delete_asset_from_container(container, name)
         except KeyError:
             # We are fine with returning None for an asset that doesn't exist
             pass
@@ -115,10 +114,10 @@ class AssetState(object):
             addresses=[address],
             timeout=self._timeout))
 
-        container = _get_account_container(self._state_entries, address)
+        container = self._get_account_container(self._state_entries, address)
         account = None
         try:
-            account = _get_account_from_container(
+            account = self._get_account_from_container( 
                 container,
                 identifier=public_key)
         except KeyError:
@@ -130,17 +129,17 @@ class AssetState(object):
     def set_account(self, public_key, name, description, approver_level ):
         address = addresshandler.make_account_address(account_id=public_key)
 
-        container = _get_account_container(self._state_entries, address)
+        container = self._get_account_container(self._state_entries, address)
 
         try:
-            account = _get_account_from_container(
+            account = self._get_account_from_container(
                 container,
                 public_key)
         except KeyError:
             account = container.entries.add()
 
         account.public_key = public_key
-        account.label = label
+        account.name = name
         account.description = description
         #for holding in holdings:
         #    account.holdings.append(holding)
@@ -151,23 +150,23 @@ class AssetState(object):
             state_entries_send,
             self._timeout)
 
-    def _get_asset_container(state_entries, address):
+    def _get_asset_container(self, state_entries, address):
         try:
-            entry = _find_in_state(state_entries, address)
+            entry = self._find_in_state(state_entries, address)
             container = asset_pb2.AssetContainer()
             container.ParseFromString(entry.data)
         except KeyError:
             container = asset_pb2.AssetContainer()
         return container
 
-    def _get_asset_from_container(container, name):
+    def _get_asset_from_container(self, container, name):
         for asset in container.entries:
             if asset.name == name:
                 return asset
         raise KeyError(
             "Asset with name {} is not in container".format(name))
 
-    def _delete_asset_from_container(container, name):
+    def _delete_asset_from_container(self, container, name):
         for asset in container.entries:
             if asset.name == name:
                 container.remove(asset)
@@ -175,9 +174,9 @@ class AssetState(object):
         raise KeyError(
             "Asset with name {} is not in container".format(name))
 
-    def _get_account_container(state_entries, address):
+    def _get_account_container(self, state_entries, address):
         try:
-            entry = _find_in_state(state_entries, address)
+            entry = self._find_in_state(state_entries, address)
             container = account_pb2.AccountContainer()
             container.ParseFromString(entry.data)
         except KeyError:
@@ -186,14 +185,14 @@ class AssetState(object):
         return container
 
 
-    def _get_account_from_container(container, identifier):
+    def _get_account_from_container(self, container, identifier):
         for account in container.entries:
             if account.public_key == identifier:
                 return account
         raise KeyError(
             "Account with identifier {} is not in container.".format(identifier))
 
-    def _find_in_state(state_entries, address):
+    def _find_in_state(self, state_entries, address):
         for entry in state_entries:
             if entry.address == address:
                 return entry
