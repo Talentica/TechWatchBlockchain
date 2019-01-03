@@ -1,0 +1,194 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Thu Jan  3 07:20:06 2019",
+    "version": "eosio::abi/1.1",
+    "structs": [
+        {
+            "name": "approve",
+            "base": "",
+            "fields": [
+                {
+                    "name": "driver",
+                    "type": "name"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "parkingspace",
+                    "type": "string"
+                },
+                {
+                    "name": "starttime",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "occupy",
+            "base": "",
+            "fields": [
+                {
+                    "name": "driver",
+                    "type": "name"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "parkingspace",
+                    "type": "string"
+                },
+                {
+                    "name": "starttime",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "pcontract",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pkey",
+                    "type": "uint64"
+                },
+                {
+                    "name": "powner",
+                    "type": "name"
+                },
+                {
+                    "name": "pdriver",
+                    "type": "name"
+                },
+                {
+                    "name": "pname",
+                    "type": "string"
+                },
+                {
+                    "name": "pstart_time",
+                    "type": "uint64"
+                },
+                {
+                    "name": "pend_time",
+                    "type": "uint64"
+                },
+                {
+                    "name": "pcontract_status",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "reject",
+            "base": "",
+            "fields": [
+                {
+                    "name": "driver",
+                    "type": "name"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "parkingspace",
+                    "type": "string"
+                },
+                {
+                    "name": "starttime",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "release",
+            "base": "",
+            "fields": [
+                {
+                    "name": "driver",
+                    "type": "name"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "parkingspace",
+                    "type": "string"
+                },
+                {
+                    "name": "starttime",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "request",
+            "base": "",
+            "fields": [
+                {
+                    "name": "driver",
+                    "type": "name"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "parkingspace",
+                    "type": "string"
+                },
+                {
+                    "name": "starttime",
+                    "type": "uint64"
+                },
+                {
+                    "name": "endtime",
+                    "type": "uint64"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "approve",
+            "type": "approve",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "occupy",
+            "type": "occupy",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "reject",
+            "type": "reject",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "release",
+            "type": "release",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "request",
+            "type": "request",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "pcontract",
+            "type": "pcontract",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": [],
+    "abi_extensions": []
+}
