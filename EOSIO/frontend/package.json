@@ -1,0 +1,30 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "eosjs": "20.0.0-beta2",
+    "moment": "^2.23.0",
+    "prop-types": "latest",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.2",
+    "text-encoding": "^0.7.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
