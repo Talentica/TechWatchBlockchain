@@ -10,9 +10,6 @@ import Grid from "@material-ui/core/Grid";
 
 import EOSService from "./services/eos-service";
 
-//eosio endpoint
-const endpoint = "http://localhost:8888";
-
 const styles = theme => ({
   card: {
     margin: 20,
@@ -40,7 +37,10 @@ class ContractReviewCard extends React.Component {
       intime: this.props.intime
     };
     try {
-      await EOSService.approveParkingSpaceRequest(endpoint, parkingdetails);
+      await EOSService.approveParkingSpaceRequest(
+        this.props.endpoint,
+        parkingdetails
+      );
       this.props.reloadTable();
     } catch (error) {
       console.log("Approve: " + error);
@@ -56,7 +56,10 @@ class ContractReviewCard extends React.Component {
       intime: this.props.intime
     };
     try {
-      await EOSService.rejectParkingSpaceRequest(endpoint, parkingdetails);
+      await EOSService.rejectParkingSpaceRequest(
+        this.props.endpoint,
+        parkingdetails
+      );
       this.props.reloadTable();
     } catch (error) {
       console.log("Reject: " + error);
@@ -72,7 +75,7 @@ class ContractReviewCard extends React.Component {
       intime: this.props.intime
     };
     try {
-      await EOSService.occupyParkingSpace(endpoint, parkingdetails);
+      await EOSService.occupyParkingSpace(this.props.endpoint, parkingdetails);
       this.props.reloadTable();
     } catch (error) {
       console.log("Occupy: " + error);
@@ -89,7 +92,7 @@ class ContractReviewCard extends React.Component {
       outtime: this.props.outtime
     };
     try {
-      await EOSService.releaseParkingSpace(endpoint, parkingdetails);
+      await EOSService.releaseParkingSpace(this.props.endpoint, parkingdetails);
       this.props.reloadTable();
     } catch (error) {
       console.log("Release: " + error);
@@ -122,14 +125,14 @@ class ContractReviewCard extends React.Component {
             color="textSecondary"
             gutterBottom
           >
-            In Time: {new Date(intime * 1000).toISOString()}
+            In Time: {new Date(intime * 1000).toLocaleString()}
           </Typography>
           <Typography
             style={{ fontSize: 12 }}
             color="textSecondary"
             gutterBottom
           >
-            Out Time: {new Date(outtime * 1000).toISOString()}
+            Out Time: {new Date(outtime * 1000).toLocaleString()}
           </Typography>
           <Typography component="pre">
             Status:{" "}

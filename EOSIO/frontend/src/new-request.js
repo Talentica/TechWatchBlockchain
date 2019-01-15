@@ -12,20 +12,11 @@ import Button from "@material-ui/core/Button";
 
 import EOSService from "./services/eos-service";
 
-//eosio endpoint
-const endpoint = "http://localhost:8888";
-const DRIVER = "maryj";
-const PRIVATE_KEY = "5KD7p1TrdyzsmZYE3diMGvf3cSXd6i9tbyhmMCrM9DFS3fqhTiG";
-
 const styles = theme => ({
   card: {
     margin: 20,
     maxWidth: 295,
     minWidth: 275
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -39,9 +30,6 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 60
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2
   }
 });
 
@@ -81,19 +69,7 @@ class Demo extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  getISOStringInLocalTimezone(dateInSec) {
-    var d = new Date(dateInSec * 1000);
-    var mm = d.getMonth(),
-      dd = d.getDate(),
-      yyyy = d.getFullYear(),
-      hh = d.getHours(),
-      ii = d.getMinutes();
-
-    return yyyy + "-" + mm + "-" + dd + "T" + hh + ":" + ii;
-  }
   componentDidMount() {}
-
   handleChange = event => {
     if (event.target.type === "datetime-local" && event.target.value) {
       var time_in_sec = getRoundedTimeInSec(
@@ -104,27 +80,6 @@ class Demo extends React.Component {
       });
     } else {
       this.setState({ [event.target.name]: event.target.value });
-    }
-  };
-  handleApprove = event => {};
-  handleReject = event => {};
-  handleOccupy = event => {};
-  handleRelease = async event => {
-    //let contract = bookingsTable[event.target.value]
-    let parkingdetails = {
-      account: DRIVER,
-      privateKey: PRIVATE_KEY,
-      owner: this.state.owner,
-      psname: this.state.psname,
-      intime: this.state.intime,
-      outtime: this.state.outtime
-    };
-    try {
-      await EOSService.releaseParkingSpace(endpoint, parkingdetails);
-      this.props.reloadTable();
-    } catch (error) {
-      console.log("Test" + error);
-      return;
     }
   };
 
@@ -141,15 +96,15 @@ class Demo extends React.Component {
       return;
     }
     let parkingdetails = {
-      account: DRIVER,
-      privateKey: PRIVATE_KEY,
+      account: this.props.user,
+      privateKey: this.props.store[this.props.user],
       owner: this.state.owner,
       psname: this.state.psname,
       intime: this.state.intime,
       outtime: this.state.outtime
     };
     try {
-      await EOSService.requestParkingSpace(endpoint, parkingdetails);
+      await EOSService.requestParkingSpace(this.props.endpoint, parkingdetails);
       this.props.reloadTable();
     } catch (error) {
       console.log("Test" + error);

@@ -75,45 +75,6 @@ const EOSService = {
       actionData,
       actionName
     );
-
-    // console.log(actionData);
-    // const rpc = new JsonRpc(endpoint);
-    // const signatureProvider = new JsSignatureProvider([privateKey]);
-    // const api = new Api({
-    //   rpc,
-    //   signatureProvider,
-    //   textDecoder: new TextDecoder(),
-    //   textEncoder: new TextEncoder()
-    // });
-    // try {
-    //   const result = await api.transact(
-    //     {
-    //       actions: [
-    //         {
-    //           account: "pademo",
-    //           name: actionName,
-    //           authorization: [
-    //             {
-    //               actor: account,
-    //               permission: "active"
-    //             }
-    //           ],
-    //           data: actionData
-    //         }
-    //       ]
-    //     },
-    //     {
-    //       blocksBehind: 3,
-    //       expireSeconds: 30
-    //     }
-    //   );
-    // } catch (e) {
-    //   console.log("Caught exception: " + e);
-    //   if (e instanceof RpcError) {
-    //     console.log(JSON.stringify(e.json, null, 2));
-    //   }
-    //   return e.json();
-    // }
   },
   occupyParkingSpace: async function(endpoint, parkingdetails) {
     let { account, privateKey, owner, psname, intime } = parkingdetails;

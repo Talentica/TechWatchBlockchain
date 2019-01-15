@@ -7,14 +7,15 @@ import ContractReviewCard from "./update-card";
 import Demo from "./new-request";
 import EOSService from "./services/eos-service";
 
-//eosio endpoint
-const endpoint = "http://localhost:8888";
-
 const styles = theme => ({
   card: {
     margin: 20,
     minWidth: 275,
     maxWidth: 295
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
   }
 });
 
@@ -33,7 +34,7 @@ class ContractReviewsList extends React.Component {
   }
 
   reloadBookingTable() {
-    EOSService.getBookingsTable(endpoint).then(res =>
+    EOSService.getBookingsTable(this.props.endpoint).then(res =>
       this.setState({ bookingsTable: res.rows })
     );
   }
@@ -43,6 +44,7 @@ class ContractReviewsList extends React.Component {
       <div>
         <Grid item>
           <ContractReviewCard
+            endpoint={this.props.endpoint}
             store={this.props.store}
             key={row.pkey}
             owner={row.powner}
@@ -61,7 +63,12 @@ class ContractReviewsList extends React.Component {
         <Grid container spacing={24}>
           {cards}
         </Grid>
-        <Demo store={this.props.store} reloadTable={this.reloadBookingTable} />
+        <Demo
+          user={this.props.user}
+          endpoint={this.props.endpoint}
+          store={this.props.store}
+          reloadTable={this.reloadBookingTable}
+        />
       </div>
     );
   }
