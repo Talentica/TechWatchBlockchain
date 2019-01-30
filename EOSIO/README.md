@@ -43,5 +43,5 @@ A blockchain based parking space sharing app.
 ## Flow
 
 ![Alt text](./ParkAssistSeqDiagram.svg)
-<img src="./ParkAssistSeqDiagram.svg">
+
 
