@@ -9,6 +9,7 @@
 - [Hydrachain](https://github.com/HydraChain/hydrachain)
 - [Openchain](https://www.openchain.org/)
 - [Hyperledger Sawtooth](https://www.hyperledger.org/projects/sawtooth)
+- [EOSIO](https://eos.io/)
 - [Enigma](https://www.enigma.co/)
 
 
