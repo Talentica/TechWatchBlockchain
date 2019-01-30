@@ -11,6 +11,7 @@ import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 
 import EOSService from "./services/eos-service";
+import IPFSService from "./services/ipfs-service";
 
 const styles = theme => ({
   card: {
@@ -64,12 +65,18 @@ class Demo extends React.Component {
         ).getTime()
       ),
       bookingsTable: [],
+      parkingsTable: [],
       input_mandatory_error: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    IPFSService.getAvailableParkingSpaces(res => {
+      var parkingData = JSON.parse(res);
+      this.setState({ parkingsTable: parkingData.ParkingSpaces });
+    });
+  }
   handleChange = event => {
     if (event.target.type === "datetime-local" && event.target.value) {
       var time_in_sec = getRoundedTimeInSec(
@@ -118,6 +125,13 @@ class Demo extends React.Component {
     if (this.state.intime > this.state.outtime)
       this.state.outtime = this.state.intime;
 
+    const ownerMenu = this.state.parkingsTable.map((row, i) => (
+      <MenuItem value={row.owner}>{row.name}</MenuItem>
+    ));
+    const psMenu = this.state.parkingsTable.map((row, i) => (
+      <MenuItem value={row.psname}>{row.psname}</MenuItem>
+    ));
+
     return (
       <div>
         <form className={classes.root} onSubmit={this.handleSubmit}>
@@ -137,10 +151,7 @@ class Demo extends React.Component {
               <MenuItem value="">
                 <em>clear</em>
               </MenuItem>
-              <MenuItem value="amitk">Amit K</MenuItem>
-              <MenuItem value="jackn">Jack N</MenuItem>
-              <MenuItem value="harryp">Harry P</MenuItem>
-              <MenuItem value="premb">Prem B</MenuItem>
+              {ownerMenu}
             </Select>
             <FormHelperText>Select the parking owner</FormHelperText>
           </FormControl>
@@ -160,16 +171,7 @@ class Demo extends React.Component {
               <MenuItem value="">
                 <em>clear</em>
               </MenuItem>
-              <MenuItem value="Opp Dmart Baner Rd">
-                Opp Dmart, Baner Rd
-              </MenuItem>
-              <MenuItem value="Krishna Bakery, MG Rd">
-                Krishna Bakery, MG Rd
-              </MenuItem>
-              <MenuItem value="590 N Mathilda Ave">590 N Mathilda Ave</MenuItem>
-              <MenuItem value="Sign Towers, SouthCity">
-                Sign Towers, SouthCity
-              </MenuItem>
+              {psMenu}
             </Select>
             <FormHelperText>Choose the parking space name</FormHelperText>
           </FormControl>

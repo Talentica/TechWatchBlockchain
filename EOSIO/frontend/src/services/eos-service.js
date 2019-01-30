@@ -1,6 +1,8 @@
 import { Api, JsonRpc, RpcError, JsSignatureProvider } from "eosjs"; // https://github.com/EOSIO/eosjs
 import { TextDecoder, TextEncoder } from "text-encoding";
 
+const contractAccount = "pademoinjung";
+
 async function CallPADemoAction(
   endpoint,
   account,
@@ -11,7 +13,6 @@ async function CallPADemoAction(
   console.log(actionData);
 
   const rpc = new JsonRpc(endpoint);
-  const contractAccount = "pademo";
   const signatureProvider = new JsSignatureProvider([privKey]);
   const api = new Api({
     rpc,
@@ -152,8 +153,8 @@ const EOSService = {
     const rpc = new JsonRpc(endpoint);
     return rpc.get_table_rows({
       json: true,
-      code: "pademo", // contract who owns the table
-      scope: "pademo", // scope of the table
+      code: contractAccount, // contract who owns the table
+      scope: contractAccount, // scope of the table
       table: "pcontract", // name of the table as specified by the contract abi
       limit: 100
     });
